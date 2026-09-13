@@ -233,3 +233,20 @@ footer.site nav{display:flex;gap:22px;flex-wrap:wrap}footer.site a:hover{color:v
 .ptabs button.on{background:var(--bg);color:var(--ink);font-weight:500;box-shadow:0 1px 2px rgba(20,26,21,.08)}
 .ptabs button:hover:not(.on){color:var(--ink)}
 .pricing-head{margin:0}
+
+/* fidelity pass: arrows between steps, browser mock, floor band, never-trio */
+.steps{gap:28px}
+.step::after{content:"→";width:auto;height:auto;background:none;right:-24px;color:var(--ghost);font-size:16px;line-height:1;transform:translateY(-50%);top:50%}
+.vis.browser{padding:0;overflow:hidden;gap:0;justify-content:flex-start}
+.vis.browser .bar{display:flex;align-items:center;gap:5px;padding:8px 12px;border-bottom:1px solid var(--line);background:var(--surface)}
+.vis.browser .bar i{width:7px;height:7px;border-radius:50%;background:var(--ghost);display:inline-block}
+.vis.browser .bar .mono{margin-left:6px;font-size:10.5px;color:var(--faint)}
+.vis.browser .body{padding:14px;display:flex;flex-direction:column;gap:6px}
+.vis.browser .bars{display:flex;gap:6px;margin-top:8px}.vis.browser .bars i{flex:1;height:5px;border-radius:3px;background:var(--ok)}
+.band.floor{display:grid;grid-template-columns:.9fr 1.3fr;gap:44px;align-items:center;margin-bottom:0}
+.band.floor .table{background:var(--bg)}
+.table .tr .no{color:var(--faint)}.table .tr .yes{color:var(--ok)}
+.never{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:32px;padding-top:28px;border-top:1px solid var(--line)}
+.never b{font-size:15px;font-weight:600;display:block;margin-bottom:6px}.never p{font-size:13.5px;color:var(--muted);line-height:1.55}
+.section .section-head .kicker.rule{margin-bottom:0}
+@media (max-width:1100px){.band.floor{grid-template-columns:1fr}.never{grid-template-columns:1fr}.step::after{display:none}}

@@ -41,41 +41,41 @@
   </div>
 </section>
 
-<section class="wrap" style="padding-bottom:88px">
-  <div class="section-head" style="align-items:flex-start;flex-direction:column;gap:10px"><h2 style="font-size:34px;font-weight:600;letter-spacing:-.025em;line-height:1.12;margin:0">Core is the floor. Full is the proof.</h2><p class="lede" style="font-size:16px;color:#40483F;max-width:64ch">Core tells you the project is well-formed. Full tells you it runs and does what the plan says. Same report shape, same badge shape, different depth.</p></div>
+<section class="wrap" style="padding-bottom:88px"><div class="band floor">
+  <div><h2 style="font-size:30px;font-weight:600;letter-spacing:-.025em;line-height:1.12;margin:0 0 14px">Core is the floor. Full is the proof.</h2><p class="lede" style="font-size:15px;color:#40483F;max-width:44ch">Core tells you the project is well-formed. Full tells you it runs and does what the plan says. Same report shape, same badge shape, different depth.</p></div>
   <div class="table" role="table">
     <div class="tr th" role="row"><span></span><span>Core</span><span>Full</span></div>
     <div class="tr" role="row"><span>Where it runs</span><span>Your CI or here</span><span>Our sandbox</span></div>
     <div class="tr" role="row"><span>Checks</span><span>21</span><span>75</span></div>
     <div class="tr" role="row"><span>Time</span><span>about a minute</span><span>about four minutes</span></div>
-    <div class="tr" role="row"><span>Boots the app</span><span>no</span><span>yes</span></div>
-    <div class="tr" role="row"><span>Contract and schema audit</span><span>no</span><span>yes</span></div>
-    <div class="tr" role="row"><span>Behavior probes</span><span>no</span><span>yes</span></div>
+    <div class="tr" role="row"><span>Boots the app</span><span class="no">no</span><span class="yes">yes</span></div>
+    <div class="tr" role="row"><span>Contract and schema audit</span><span class="no">no</span><span class="yes">yes</span></div>
+    <div class="tr" role="row"><span>Behavior probes</span><span class="no">no</span><span class="yes">yes</span></div>
     <div class="tr" role="row"><span>Badge</span><span>Verified · Core</span><span>Verified · Full</span></div>
     <div class="tr" role="row"><span>Price</span><span>Free, Apache 2.0</span><span>One scan from your plan</span></div>
   </div>
-</section>
+</div></section>
 
-<section class="wrap"><div class="band">
-  <div class="kicker">What comes back</div><h2>The report, the badge, the check.</h2>
+<section class="wrap" style="padding-bottom:88px">
+  <h2 style="margin:0 0 22px;font-size:30px;font-weight:600;letter-spacing:-.025em">What comes back</h2>
   <div class="three">
     <div class="card"><div class="vis"><div class="mini"><span>Structure &amp; imports</span><span class="ok">PASS</span></div><div class="mini"><span>Install &amp; compile</span><span class="ok">PASS</span></div><div class="mini"><span>Contract &amp; schema</span><span class="ok">PASS</span></div><div class="mini"><span>Runtime behavior</span><span style="color:#7A1F1E">1 FAIL</span></div></div><b>The report</b><p>Four groups, every failure named in plain words with what the sandbox saw. Kept until you delete it.</p></div>
     <div class="card"><div class="vis" style="align-items:flex-start;gap:12px"><span class="badge"><span class="a"><svg width="12" height="12"><use href="#moon"/></svg>Lunas</span><span class="b">Verified <em>· Full</em></span></span><span class="badge stale"><span class="a"><svg width="12" height="12"><use href="#moon"/></svg>Lunas</span><span class="b">Verified <em>· 3 commits ago</em></span></span></div><b>The badge</b><p>Tied to a commit. Goes grey on its own when commits land unscanned. Links to a public page with the verdict, never the code.</p></div>
     <div class="card"><div class="vis"><div class="ghcheck" style="margin:0"><span><b>Lunas / full</b> <span class="muted">Verified · 75 of 75</span></span><span class="muted">Details</span></div></div><b>The GitHub check</b><p>One line on every push or pull request. The app reads code at one commit and writes that line. It never pushes.</p></div>
   </div>
-</div></section>
+</section>
 
 <section class="wrap" style="padding-bottom:88px">
-  <div class="three" style="margin-top:0">
-    <div class="card"><b>We never keep code</b><p>The sandbox is destroyed when the scan ends. The report is the only thing that stays.</p></div>
-    <div class="card"><b>We never list the layers</b><p>You see the four groups and the named failures. The checks themselves are not a menu to game.</p></div>
-    <div class="card"><b>We never say "mostly"</b><p>74 of 75 is a fail with one named reason. The badge only exists for a pass.</p></div>
+  <div class="never">
+    <div><b>We never keep code</b><p>The sandbox is destroyed when the scan ends. The report is the only thing that stays.</p></div>
+    <div><b>We never list the layers</b><p>You see the four groups and the named failures. The checks themselves are not a menu to game.</p></div>
+    <div><b>We never say "mostly"</b><p>74 of 75 is a fail with one named reason. The badge only exists for a pass.</p></div>
   </div>
 </section>
 
 <section class="wrap"><div class="cta">
-  <div><h2>Try Core on your own project.</h2><p>Three scans a month here, unlimited from the command line. No account needed for the CLI.</p><span class="cmd" style="margin-top:18px"><span style="color:#8A928A">$</span>pip install aegis-validator</span></div>
-  <div class="r"><a class="btn primary" href="/app/login?next=/app/new">Run a scan free</a></div>
+  <div><h2>Try Core on your own project.</h2><p>Three scans a month here, unlimited from the command line. No account needed for the CLI.</p></div>
+  <div class="r" style="flex-direction:row;align-items:center;gap:12px"><span class="cmd" style="background:#fff;padding:12px 16px"><span style="color:#8A928A">$</span>pip install aegis-validator</span><a class="btn primary" href="/app/login?next=/app/new">Run a scan free</a></div>
 </div></section>
 </main>
 
