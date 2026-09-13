@@ -39,8 +39,8 @@
       <span class="kicker">Get started</span>
       <h2>Install the CLI</h2>
       <p>The open-source core runs anywhere Python does. One install, one command, and a verdict with evidence.</p>
-<pre><code><span class="out">$</span> pip install lunas-validator
-<span class="out">$</span> lunas check ./my-project
+<pre><code><span class="out">$</span> pip install aegis-validator
+<span class="out">$</span> aegis check ./my-project
 
 <span class="out"># example output</span>
 structure &amp; imports .... <span class="out"><span class="ok">PASS</span></span>
@@ -48,14 +48,14 @@ install &amp; compile ...... <span class="out"><span class="ok">PASS</span></spa
 tests .................. <span class="out"><span class="bad">FAIL (2)</span></span>
 verdict: <span class="out"><span class="bad">NOT READY</span></span>  · details in lunas-report.json</code></pre>
       <p>A non-zero exit code on failure makes the CLI drop straight into CI: add one line to your pipeline and unverified code stops merging.</p>
-      <p class="note">Needs Python 3.11 or newer. Node.js is used when it is present, for the JavaScript syntax check and <code>npm ci</code>; without it those checks are skipped and say so.</p>
+      <p class="note">The package and the command keep their original name, aegis-validator and <code>aegis</code>, until the rename ships on PyPI. Needs Python 3.11 or newer. Node.js is used when it is present, for the JavaScript syntax check and <code>npm ci</code>; without it those checks are skipped and say so.</p>
     </article>
 
     <article class="doc" id="first-scan">
       <span class="kicker">Get started</span>
       <h2>First scan</h2>
       <p>Point the CLI at a directory. It reads the files, resolves every import and route, installs dependencies, compiles what compiles and runs the tests it finds. Nothing leaves your machine.</p>
-<pre><code><span class="out">$</span> lunas check ./my-project --json lunas-report.json --exit-on-fail</code></pre>
+<pre><code><span class="out">$</span> aegis check ./my-project --json lunas-report.json --exit-on-fail</code></pre>
       <h3>Options</h3>
       <div class="layers">
         <div><code>--json PATH</code><span>Write the full report as JSON next to the console output.</span></div>
@@ -94,8 +94,8 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
         with: { python-version: "3.12" }
-      - run: pip install lunas-validator
-      - run: lunas check . --no-llm --exit-on-fail --json lunas-report.json</code></pre>
+      - run: pip install aegis-validator
+      - run: aegis check . --no-llm --exit-on-fail --json lunas-report.json</code></pre>
       <h3>Keep the report in your account</h3>
       <p>A report produced in CI can be sent to Lunas so it shows up next to your web scans. It uses no web quota and never touches a sandbox; the code stayed where it was. Create a token under Settings › Connections and store it as a secret.</p>
 <pre><code>      - run: |
