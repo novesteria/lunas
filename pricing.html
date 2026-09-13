@@ -5,9 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#FFFFFF">
 <title>Pricing · Lunas</title>
-<meta name="description" content="Free: three Core scans a month. Pro $19 for 20 Full scans, Max $100 for 120. Team seats pooled. Pay as you go from $7. Monthly, cancel any time.">
+<meta name="description" content="Free: three Core scans a month. One Full scan $7. Pro $19 for 20 Full scans, Max $100 for 120. Team seats pooled. Monthly, cancel any time.">
 <link rel="canonical" href="https://aegis.novesteria.com/pricing">
-<meta property="og:type" content="website"><meta property="og:site_name" content="Lunas"><meta property="og:title" content="Pricing · Lunas"><meta property="og:description" content="Free to try. Pro $19, Max $100 a month. Team seats pooled. Pay as you go from $7."><meta property="og:url" content="https://aegis.novesteria.com/pricing"><meta property="og:image" content="https://aegis.novesteria.com/og-image.png">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Lunas"><meta property="og:title" content="Pricing · Lunas"><meta property="og:description" content="Free to try. One Full scan $7. Pro $19, Max $100 a month. Team seats pooled."><meta property="og:url" content="https://aegis.novesteria.com/pricing"><meta property="og:image" content="https://aegis.novesteria.com/og-image.png">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
@@ -20,6 +20,7 @@
 <symbol id="newmoon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#8A928A" stroke-width="1.6"/></symbol>
 <symbol id="crescent" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#475B4D" opacity="0.14"/><path d="M12 3A9 9 0 0 0 12 21A3.2 9 0 0 1 12 3Z" fill="#475B4D"/></symbol>
 <symbol id="fullmoon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="#475B4D"/></symbol>
+<symbol id="halfmoon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="none" stroke="#475B4D" stroke-width="1.6"/><path d="M12 3a9 9 0 0 1 0 18Z" fill="#475B4D"/></symbol>
 </defs></svg>
 
 <header class="site"><div class="wrap nav">
@@ -32,12 +33,12 @@
 <section class="wrap pricing-head">
   <div class="kicker rule">Pricing</div>
   <h1>Free to try. A plan when you ship every week.</h1>
-  <p class="lede">Core is free, here and from the command line. Full scans come from a plan, a team pool, or one at a time. Monthly, cancel any time. Prices in USD; VAT is shown as a separate line at checkout.</p>
+  <p class="lede">Core is free, here and from the command line. Full scans come from a plan, a team pool, or one at a time. Plans are monthly, cancel any time. Prices in USD; VAT is shown as a separate line at checkout.</p>
 </section>
 
 <section class="wrap" style="padding-bottom:72px">
   <div class="sec-title"><h2>Individual</h2><p>One person, one account. Full scans renew every month; unused ones do not carry over.</p></div>
-  <div class="plans">
+  <div class="plans four">
     <div class="plan">
       <div class="name"><svg width="18" height="18"><use href="#newmoon"/></svg>New Moon</div>
       <div class="who">Free · try Lunas on your own code</div>
@@ -47,13 +48,25 @@
         <li><svg class="check"><use href="#tick"/></svg>21 checks: imports, types, contracts, tests</li>
         <li><svg class="check"><use href="#tick"/></svg>Report kept 7 days</li>
         <li><svg class="check"><use href="#tick"/></svg>Open-source CLI on your machine, unlimited</li>
-        <li><svg class="check"><use href="#tick"/></svg>Pay as you go when you need a Full scan</li>
+        <li><svg class="check"><use href="#tick"/></svg>One Full scan at a time when you need it</li>
       </ul>
       <a class="btn outline" href="/app/login?next=/app/new">Start free</a>
     </div>
+    <div class="plan">
+      <div class="name"><svg width="18" height="18"><use href="#crescent"/></svg>Crescent</div>
+      <div class="who">One Full scan · this project, no plan</div>
+      <div class="price"><b>$7</b><span>One scan, used on the project you pick. Pay, run, done.</span></div>
+      <ul class="feats">
+        <li><svg class="check"><use href="#tick"/></svg>Runs the moment payment clears</li>
+        <li><svg class="check"><use href="#tick"/></svg>75 checks, sandbox included</li>
+        <li><svg class="check"><use href="#tick"/></svg>Report kept for good</li>
+        <li class="h">No badge, no scan on push, no priority</li>
+      </ul>
+      <a class="btn outline" href="/app/login?next=%2Fapp%2Fsettings%2Fplan%3Fbuy%3Dsingle">Buy a scan</a>
+    </div>
     <div class="plan hi">
       <span class="tag">Most people</span>
-      <div class="name"><svg width="18" height="18"><use href="#crescent"/></svg>Crescent</div>
+      <div class="name"><svg width="18" height="18"><use href="#halfmoon"/></svg>Half Moon</div>
       <div class="who">Pro · for one developer shipping every week</div>
       <div class="price"><b>$19</b><span>Per month, cancel any time.</span></div>
       <ul class="feats">
@@ -100,51 +113,9 @@
     <span><svg class="check"><use href="#tick"/></svg>Code deleted after every scan, for everyone</span>
   </div>
   <div style="display:flex;gap:14px;align-items:center;flex-wrap:wrap;margin-top:24px"><a class="btn primary" href="/app/login?next=/app/settings/team">Start a team</a><span class="fine" style="margin:0">Coming from Pro? Your plan turns into your own seat when the team starts; unused days are credited to the first invoice.</span></div>
+  <p class="fine" style="margin-top:28px">Payments are handled by Polar, the merchant of record. Card details never touch Novesteria. Refund policy: 14 days on the first payment of a plan; an unused single scan is refundable, a used one is not.</p>
 </section>
 
-<section class="wrap" style="padding-bottom:80px">
-  <div class="sec-title"><h2>Pay as you go</h2><p>Works with or without a plan. Plan scans are used first; packs cover the rest.</p></div>
-  <div class="plans">
-    <div class="plan">
-      <div class="name">Single scan</div>
-      <div class="who">No plan · one Full scan, this project</div>
-      <div class="price"><b>$7</b><span>One scan, used on the project you pick. Pay, run, done.</span></div>
-      <ul class="feats">
-        <li><svg class="check"><use href="#tick"/></svg>Runs the moment payment clears</li>
-        <li><svg class="check"><use href="#tick"/></svg>75 checks, sandbox included</li>
-        <li><svg class="check"><use href="#tick"/></svg>Report kept for good</li>
-        <li class="h">No badge, no scan on push, no priority</li>
-      </ul>
-      <a class="btn outline" href="/app/login?next=%2Fapp%2Fsettings%2Fplan%3Fbuy%3Dsingle">Buy a scan</a>
-    </div>
-    <div class="plan">
-      <div class="name">5 scans</div>
-      <div class="who">No plan · a small batch, valid 45 days</div>
-      <div class="price"><b>$29</b><span>$5.80 a scan. Unused scans expire 45 days after purchase.</span></div>
-      <ul class="feats">
-        <li><svg class="check"><use href="#tick"/></svg>Use them on any project, any time in 45 days</li>
-        <li><svg class="check"><use href="#tick"/></svg>Balance and expiry shown in Plan &amp; usage</li>
-        <li><svg class="check"><use href="#tick"/></svg>Report kept for good</li>
-        <li class="h">No badge, no scan on push, no priority</li>
-      </ul>
-      <a class="btn outline" href="/app/login?next=%2Fapp%2Fsettings%2Fplan%3Fbuy%3Dpack5">Buy 5 scans</a>
-    </div>
-    <div class="plan" style="background:var(--surface);border-color:transparent">
-      <div class="kicker">When a plan costs less</div>
-      <div class="name">From 3 Full scans a month</div>
-      <div class="price"><b>$19</b><span>Crescent · Pro: 20 Full scans a month, $0.95 a scan.</span></div>
-      <ul class="feats">
-        <li class="h">A plan also brings:</li>
-        <li><svg class="check"><use href="#tick"/></svg>Verified badges on your repos</li>
-        <li><svg class="check"><use href="#tick"/></svg>Scan on push, one GitHub check per commit</li>
-        <li><svg class="check"><use href="#tick"/></svg>Ahead of pay-as-you-go in the queue</li>
-        <li><svg class="check"><use href="#tick"/></svg>Nothing expires while you subscribe</li>
-      </ul>
-      <a class="btn primary" href="/app/login?next=%2Fapp%2Fsettings%2Fplan%3Fbuy%3Dpro">Start Pro</a>
-    </div>
-  </div>
-  <p class="fine">Payments are handled by Polar, the merchant of record. Card details never touch Novesteria. Refund policy: 14 days on the first payment of a plan; unused pay-as-you-go scans are refundable, used ones are not.</p>
-</section>
 </main>
 
 <footer class="site"><div class="wrap"><span>© 2026 Novesteria</span><nav><a href="/pricing">Pricing</a><a href="/docs">Docs</a><a href="/verified">Verification pages</a><a href="/legal/security">Security</a><a href="/legal/privacy">Privacy</a><a href="/legal/terms">Terms</a><a href="/legal/refund">Refund policy</a></nav></div></footer>
