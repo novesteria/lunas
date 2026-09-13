@@ -228,3 +228,8 @@ footer.site nav{display:flex;gap:22px;flex-wrap:wrap}footer.site a:hover{color:v
 .plans.four{grid-template-columns:repeat(4,minmax(0,1fr))}
 @media (max-width:1100px){.plans.four{grid-template-columns:1fr 1fr}}
 @media (max-width:640px){.plans.four{grid-template-columns:1fr}}
+.ptabs{display:inline-flex;gap:2px;padding:4px;border-radius:999px;background:var(--surface);margin-top:30px}
+.ptabs button{border:0;background:none;font:inherit;font-size:14.5px;color:var(--muted);padding:9px 22px;border-radius:999px;cursor:pointer}
+.ptabs button.on{background:var(--bg);color:var(--ink);font-weight:500;box-shadow:0 1px 2px rgba(20,26,21,.08)}
+.ptabs button:hover:not(.on){color:var(--ink)}
+.pricing-head{margin:0}

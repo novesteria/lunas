@@ -32,12 +32,13 @@
 <main>
 <section class="wrap pricing-head">
   <div class="kicker rule">Pricing</div>
-  <h1>Free to try. A plan when you ship every week.</h1>
-  <p class="lede">Core is free, here and from the command line. Full scans come from a plan, a team pool, or one at a time. Plans are monthly, cancel any time. Prices in USD; VAT is shown as a separate line at checkout.</p>
+  <h1>Plans that grow with you.</h1>
+  <p class="lede">Core is free: 21 checks, here and from the command line. Full needs a plan, or a single scan. Plans are monthly, cancel any time. Prices in USD; VAT is shown as a separate line at checkout. Every number below is the same the app shows.</p>
+  <div class="ptabs" role="tablist" aria-label="Plans"><button type="button" role="tab" class="on" data-tab="individual" aria-selected="true">Individual</button><button type="button" role="tab" data-tab="team" aria-selected="false">Team</button></div>
 </section>
 
-<section class="wrap" style="padding-bottom:72px">
-  <div class="sec-title"><h2>Individual</h2><p>One person, one account. Full scans renew every month; unused ones do not carry over.</p></div>
+<section class="wrap" style="padding-bottom:80px" data-pane="individual">
+  <p class="fine" style="margin:0 0 18px">One person, one account. Full scans renew every month; unused ones do not carry over.</p>
   <div class="plans four">
     <div class="plan">
       <div class="name"><svg width="18" height="18"><use href="#newmoon"/></svg>New Moon</div>
@@ -96,8 +97,8 @@
   <p class="fine">Upgrades apply at once, prorated for the rest of the period. Downgrades and cancellations take effect at the end of the paid period. 14-day refund on the first payment of a plan.</p>
 </section>
 
-<section class="wrap" style="padding-bottom:72px">
-  <div class="sec-title"><h2>Team</h2><p>For teams of 2 to 150. The team's quota is every seat added up, shared by everyone. Core stays unlimited.</p></div>
+<section class="wrap" style="padding-bottom:80px" data-pane="team" hidden>
+  <p class="fine" style="margin:0 0 18px">For teams of 2 to 150. The team's quota is every seat added up, shared by everyone. Core stays unlimited.</p>
   <div class="seats">
     <div class="seat"><b>Standard seat</b><p>20 Full scans a month per seat, into the team pool. Badges, scan on push.</p><div class="price"><b>$19</b><span>Per seat / month. $0.95 a scan.</span></div></div>
     <div class="seat"><b>Premium seat</b><p>120 Full scans a month per seat, into the team pool. First in the queue.</p><div class="price"><b>$100</b><span>Per seat / month. $0.83 a scan.</span></div></div>
@@ -120,5 +121,13 @@
 
 <footer class="site"><div class="wrap"><span>© 2026 Novesteria</span><nav><a href="/pricing">Pricing</a><a href="/verified">Verification pages</a><a href="/legal/security">Security</a><a href="/legal/privacy">Privacy</a><a href="/legal/terms">Terms</a><a href="/legal/refund">Refund policy</a></nav></div></footer>
 <script src="/lunas-site.js" defer></script>
+<script>
+(function(){
+  var tabs=document.querySelectorAll('.ptabs [data-tab]'), panes=document.querySelectorAll('[data-pane]');
+  function show(k,push){ tabs.forEach(function(t){ var on=t.dataset.tab===k; t.classList.toggle('on',on); t.setAttribute('aria-selected',on?'true':'false'); }); panes.forEach(function(p){ p.hidden=p.dataset.pane!==k; }); if(push){ history.replaceState(null,'',k==='individual'?location.pathname:location.pathname+'?tab='+k); } }
+  tabs.forEach(function(t){ t.addEventListener('click',function(){ show(t.dataset.tab,true); }); });
+  var q=new URLSearchParams(location.search).get('tab'); show(q==='team'?'team':'individual',false);
+})();
+</script>
 </body>
 </html>
