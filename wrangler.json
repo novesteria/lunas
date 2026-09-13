@@ -1,9 +1,14 @@
 {
   "name": "aegis",
-  "compatibility_date": "2025-01-01",
+  "main": "worker.js",
+  "compatibility_date": "2025-09-01",
   "assets": {
     "directory": "./",
-    "not_found_handling": "single-page-application"
+    "binding": "ASSETS",
+    "not_found_handling": "404-page"
+  },
+  "vars": {
+    "APP_ORIGIN": "https://aegis-full-api-production.up.railway.app"
   },
   "routes": [
     {

@@ -25,3 +25,4 @@ __pycache__/
 LICENSE
 NOTICE
 .DS_Store
+worker.js

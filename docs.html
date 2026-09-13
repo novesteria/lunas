@@ -1,0 +1,195 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FFFFFF">
+<title>Docs · Lunas</title>
+<meta name="description" content="Install the CLI, run a first scan, put Lunas in CI, read a report, and look up the checks and exit codes.">
+<link rel="canonical" href="https://lunas.novesteria.com/docs">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Lunas"><meta property="og:title" content="Docs · Lunas"><meta property="og:description" content="Install the CLI, run a scan, read a report, add the badge."><meta property="og:url" content="https://lunas.novesteria.com/docs"><meta property="og:image" content="https://lunas.novesteria.com/og-image.png">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/lunas-site.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="moon" viewBox="0 0 100 100"><g transform="translate(50 50) rotate(200) translate(-50 -50)"><path d="M68.99 12.54 A42 42 0 1 0 68.99 87.46 A50 50 0 0 1 68.99 12.54 Z" fill="currentColor"/></g></symbol>
+</defs></svg>
+
+<header class="site"><div class="wrap nav">
+  <a class="brand" href="/"><svg width="26" height="26" style="color:#2A3B31"><use href="#moon"/></svg><span><b>Lunas</b><span class="by">BY NOVESTERIA</span></span></a>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M2 4.5h14M2 9h14M2 13.5h14" stroke="#20261F" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  <nav class="nav-links"><a href="/how">How it works</a><a class="on" href="/docs">Docs</a><a href="/verified">Verification pages</a><a class="btn primary sm" href="/app/login?next=/app/new">Run a scan</a></nav>
+</div></header>
+
+<main class="wrap docs">
+  <nav class="docs-nav" aria-label="Docs">
+    <span class="kicker">Get started</span>
+    <a class="on" href="#install">Install the CLI</a><a href="#first-scan">First scan</a><a href="#web-scans">Web scans</a>
+    <span class="kicker">Guides</span>
+    <a href="#ci">CI integration</a><a href="#reading">Reading a report</a><a href="#core-vs-full">Core vs Full</a>
+    <span class="kicker">Reference</span>
+    <a href="#checks">Check reference</a><a href="#exit-codes">Exit codes</a>
+  </nav>
+
+  <div>
+    <article class="doc" id="install">
+      <span class="kicker">Get started</span>
+      <h2>Install the CLI</h2>
+      <p>The open-source core runs anywhere Python does. One install, one command, and a verdict with evidence.</p>
+<pre><code><span class="out">$</span> pip install lunas-validator
+<span class="out">$</span> lunas check ./my-project
+
+<span class="out"># example output</span>
+structure &amp; imports .... <span class="out"><span class="ok">PASS</span></span>
+install &amp; compile ...... <span class="out"><span class="ok">PASS</span></span>
+tests .................. <span class="out"><span class="bad">FAIL (2)</span></span>
+verdict: <span class="out"><span class="bad">NOT READY</span></span>  · details in lunas-report.json</code></pre>
+      <p>A non-zero exit code on failure makes the CLI drop straight into CI: add one line to your pipeline and unverified code stops merging.</p>
+      <p class="note">Needs Python 3.11 or newer. Node.js is used when it is present, for the JavaScript syntax check and <code>npm ci</code>; without it those checks are skipped and say so.</p>
+    </article>
+
+    <article class="doc" id="first-scan">
+      <span class="kicker">Get started</span>
+      <h2>First scan</h2>
+      <p>Point the CLI at a directory. It reads the files, resolves every import and route, installs dependencies, compiles what compiles and runs the tests it finds. Nothing leaves your machine.</p>
+<pre><code><span class="out">$</span> lunas check ./my-project --json lunas-report.json --exit-on-fail</code></pre>
+      <h3>Options</h3>
+      <div class="layers">
+        <div><code>--json PATH</code><span>Write the full report as JSON next to the console output.</span></div>
+        <div><code>--exit-on-fail</code><span>Exit with code 1 when the verdict is a fail. Without it the CLI exits 0 unless it crashed.</span></div>
+        <div><code>--no-llm</code><span>Skip the two checks that ask a model (design fidelity, feature coverage). No API key needed; the default in CI.</span></div>
+        <div><code>--brief PATH</code><span>A brief.json describing what was asked for. Enables the feature coverage and design fidelity checks.</span></div>
+        <div><code>--verbose, -v</code><span>Print one line per check with its summary.</span></div>
+      </div>
+      <p>Without a brief and an <code>ANTHROPIC_API_KEY</code> the two model-assisted checks are skipped and reported as skipped. The other 19 are deterministic: same input, same verdict.</p>
+    </article>
+
+    <article class="doc" id="web-scans">
+      <span class="kicker">Get started</span>
+      <h2>Web scans</h2>
+      <p>Sign in with Google or an email link, upload a zip or point Lunas at a repository, and read the report in the app. A Core scan takes about a minute. A Full scan boots the project in a fresh sandbox and takes about four.</p>
+      <ul>
+        <li>Three Core scans a month are free. No card.</li>
+        <li>Full scans come from a plan, or one at a time as pay as you go. Pricing is inside the app under Settings.</li>
+        <li>The sandbox is destroyed when the scan ends. The report, the badge and the public page stay until you delete them.</li>
+        <li>A passed Full scan gives the project a badge for the README and a public verification page.</li>
+      </ul>
+      <p><a class="btn primary sm" href="/app/login?next=/app/new">Run a scan</a></p>
+    </article>
+
+    <article class="doc" id="ci">
+      <span class="kicker">Guides</span>
+      <h2>CI integration</h2>
+      <p>Run Core on every push. The job fails when the verdict is a fail, and the JSON report is there for the log.</p>
+<pre><code><span class="out"># .github/workflows/lunas.yml</span>
+name: lunas
+on: [push, pull_request]
+jobs:
+  core:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: { python-version: "3.12" }
+      - run: pip install lunas-validator
+      - run: lunas check . --no-llm --exit-on-fail --json lunas-report.json</code></pre>
+      <h3>Keep the report in your account</h3>
+      <p>A report produced in CI can be sent to Lunas so it shows up next to your web scans. It uses no web quota and never touches a sandbox; the code stayed where it was. Create a token under Settings › Connections and store it as a secret.</p>
+<pre><code>      - run: |
+          jq -n --arg p "$GITHUB_REPOSITORY" --arg c "$GITHUB_SHA" --slurpfile r lunas-report.json \
+            '{project: $p, commit: $c, report: $r[0]}' \
+          | curl -sS -X POST https://lunas.novesteria.com/api/reports \
+              -H "Authorization: Bearer $LUNAS_TOKEN" -H "Content-Type: application/json" -d @-</code></pre>
+      <p>Full scans, the badge and the GitHub check come from the app: connect the repository under Settings › Connections and turn on scan on push.</p>
+    </article>
+
+    <article class="doc" id="reading">
+      <span class="kicker">Guides</span>
+      <h2>Reading a report</h2>
+      <p>Every report has the same shape: a verdict on top, then groups of checks, then the failures with what was seen.</p>
+      <ul>
+        <li>The verdict is pass or fail. There is no partial. 74 of 75 is a fail with one named reason.</li>
+        <li>Groups tally the checks in an area: structure and imports, install and compile, contract and schema, runtime behavior. Core reports cover the first two and the tests.</li>
+        <li>A failure names the check, says in plain words what was expected and what was found, and quotes the evidence: the file and line, the command output, or the request and response.</li>
+        <li>Skipped checks are listed as skipped with the reason, for example no tests, no tsconfig, or no Node.js on the machine.</li>
+      </ul>
+      <p>In the app the report can be downloaded as Markdown or JSON, and every earlier scan of the project stays reachable from the project page. The JSON written by the CLI carries the same fields: <code>passed</code>, <code>layers</code> with a <code>verdict</code> and <code>summary</code> each, and the evidence.</p>
+    </article>
+
+    <article class="doc" id="core-vs-full">
+      <span class="kicker">Guides</span>
+      <h2>Core vs Full</h2>
+      <p>Core tells you the project is well-formed. Full tells you it runs and does what the plan says. Same report shape, same badge shape, different depth.</p>
+      <div class="table">
+        <div class="tr th"><span></span><span>Core</span><span>Full</span></div>
+        <div class="tr"><span>Where it runs</span><span>Your CI or here</span><span>Our sandbox</span></div>
+        <div class="tr"><span>Checks</span><span>21, open source</span><span>75</span></div>
+        <div class="tr"><span>Time</span><span>about a minute</span><span>about four minutes</span></div>
+        <div class="tr"><span>Boots the app</span><span>no</span><span>yes</span></div>
+        <div class="tr"><span>Contract and schema audit</span><span>no</span><span>yes</span></div>
+        <div class="tr"><span>Behavior probes</span><span>no</span><span>yes</span></div>
+        <div class="tr"><span>Badge</span><span>Verified · Core</span><span>Verified · Full</span></div>
+        <div class="tr"><span>Price</span><span>Free, Apache 2.0</span><span>One scan from your plan</span></div>
+      </div>
+      <p>The Full checks are not listed anywhere, on purpose: you see the four groups and the named failures, never a menu to game. <a href="/how" style="color:#475B4D;font-weight:500">How it works →</a></p>
+    </article>
+
+    <article class="doc" id="checks">
+      <span class="kicker">Reference</span>
+      <h2>Check reference</h2>
+      <p>The 21 checks in the open-source core, by name as they appear in the JSON report. The source is public, so what a pass means is never a secret.</p>
+      <h3>Structure and imports</h3>
+      <div class="layers">
+        <div><code>python_imports</code><span>Every local Python import resolves to a file in the repository.</span></div>
+        <div><code>python_completeness</code><span>No stub function bodies left in Python code.</span></div>
+        <div><code>static_imports</code><span>Relative imports and script or stylesheet references exist on disk.</span></div>
+        <div><code>named_import_consistency</code><span>Named imports from relative paths resolve to a real export.</span></div>
+        <div><code>import_case_consistency</code><span>Import paths match file names and exports in casing.</span></div>
+        <div><code>duplicate_type_declarations</code><span>No duplicate interface or type declarations with differing shapes.</span></div>
+        <div><code>hook_destructure_consistency</code><span>Hook consumers destructure only fields the hook returns.</span></div>
+        <div><code>react_prop_consistency</code><span>JSX prop usage matches the component's declared props.</span></div>
+        <div><code>router_prefix_consistency</code><span>FastAPI routers are not mounted with a doubled prefix.</span></div>
+        <div><code>html_js_id_parity</code><span>Every element id the JavaScript reaches for exists in some HTML file.</span></div>
+        <div><code>interactivity</code><span>Interactive HTML has at least one JavaScript event handler.</span></div>
+        <div><code>css_completeness</code><span>CSS files contain real rules, not placeholders.</span></div>
+        <div><code>ast_brace_balance</code><span>Braces, parentheses and brackets balance in JavaScript and TypeScript.</span></div>
+      </div>
+      <h3>Install and compile</h3>
+      <div class="layers">
+        <div><code>python_deps_completeness</code><span>Third-party Python imports are declared in the project's dependencies.</span></div>
+        <div><code>node_deps_completeness</code><span>Bare-specifier Node imports are declared in package.json.</span></div>
+        <div><code>js_syntax</code><span><code>node --check</code> over every JavaScript file.</span></div>
+        <div><code>npm_install</code><span><code>npm ci</code>, or <code>npm install</code>, on the project root.</span></div>
+        <div><code>tsc</code><span><code>tsc --noEmit</code> type check; skipped when there is no tsconfig.json.</span></div>
+      </div>
+      <h3>Tests</h3>
+      <div class="layers">
+        <div><code>pytest</code><span><code>python -m pytest</code>; skipped cleanly when there are no tests.</span></div>
+      </div>
+      <h3>With a brief</h3>
+      <div class="layers">
+        <div><code>feature_coverage</code><span>Keyword scan plus a model's judgement on whether the asked-for features are present. Needs a brief and an API key.</span></div>
+        <div><code>design_fidelity</code><span>A model's judgement of design-brief fidelity with a deterministic override. Needs a brief and an API key.</span></div>
+      </div>
+    </article>
+
+    <article class="doc" id="exit-codes">
+      <span class="kicker">Reference</span>
+      <h2>Exit codes</h2>
+      <div class="layers">
+        <div><code>0</code><span>The scan ran. With <code>--exit-on-fail</code> this also means the verdict was a pass.</span></div>
+        <div><code>1</code><span>The verdict was a fail and <code>--exit-on-fail</code> was set.</span></div>
+        <div><code>2</code><span>The CLI could not run: the path is not a directory, the brief did not load, or the command was not recognised.</span></div>
+      </div>
+      <p>Warnings, for example a model client that could not be created, go to stderr and do not change the exit code.</p>
+    </article>
+  </div>
+</main>
+
+<footer class="site"><div class="wrap"><span>© 2026 Novesteria</span><nav><a href="/verified">Verification pages</a><a href="/legal/security">Security</a><a href="/legal/privacy">Privacy</a><a href="/legal/terms">Terms</a><a href="/legal/refund">Refund policy</a></nav></div></footer>
+<script src="/lunas-site.js" defer></script>
+</body>
+</html>

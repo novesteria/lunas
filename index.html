@@ -1,446 +1,129 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="theme-color" content="#E9ECE6" />
-    <link rel="icon" href="/favicon.ico" sizes="any" />
-    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png" />
-    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-
-    <title>Aegis · by Novesteria</title>
-    <meta name="description" content="Run Aegis Core's 21 open-source layers free on the web, or use the proprietary 75-layer Aegis Full engine." />
-    <meta name="author" content="Novesteria" />
-    <link rel="canonical" href="https://aegis.novesteria.com/" />
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="Novesteria" />
-    <meta property="og:title" content="Aegis · by Novesteria" />
-    <meta property="og:description" content="21 open-source layers, free on the web. 75 proprietary layers for deeper managed verification." />
-    <meta property="og:url" content="https://aegis.novesteria.com/" />
-
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Aegis · by Novesteria" />
-    <meta name="twitter:description" content="21 open-source layers, free on the web. 75 proprietary layers for deeper managed verification." />
-
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=JetBrains+Mono:wght@400;500&display=swap" />
-
-    <style>
-        :root {
-            --ink: #1F2421;
-            --ink-muted: #5E6863;
-            --accent: #476B57;
-            --accent-strong: #324F40;
-            --canvas: #E9ECE6;
-            --deep: #1A1F1B;
-            --border: rgba(31, 36, 33, 0.12);
-        }
-        * { box-sizing: border-box; }
-        body {
-            margin: 0;
-            font-family: 'Instrument Sans', system-ui, -apple-system, sans-serif;
-            background: var(--canvas);
-            color: var(--ink);
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
-            -webkit-font-smoothing: antialiased;
-            text-rendering: optimizeLegibility;
-        }
-        a { color: var(--accent); text-decoration: none; transition: color 0.15s; }
-        a:hover { color: var(--accent-strong); }
-
-        .grove-bg {
-            position: absolute;
-            inset: 0;
-            opacity: 0.05;
-            pointer-events: none;
-            z-index: 0;
-        }
-
-        header {
-            position: relative;
-            z-index: 2;
-            padding: 1.25rem 1.5rem;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 1rem;
-        }
-        .header-brand-group {
-            display: flex;
-            align-items: center;
-            gap: 1.25rem;
-            min-width: 0;
-        }
-        .brand {
-            display: flex;
-            align-items: center;
-            gap: 0.6rem;
-            font-weight: 600;
-            font-size: 1.125rem;
-            color: var(--ink);
-            flex-shrink: 0;
-        }
-        .brand svg { color: var(--accent); flex-shrink: 0; }
-        .header-link {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.14em;
-            color: var(--ink-muted);
-            white-space: nowrap;
-        }
-        .header-link:hover { color: var(--accent); }
-        @media (max-width: 480px) {
-            .header-link { display: none; }
-        }
-        .header-cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.4rem;
-            padding: 0.5rem 1.1rem;
-            background: var(--accent);
-            color: var(--canvas);
-            font-weight: 500;
-            font-size: 0.85rem;
-            border-radius: 2px;
-            transition: background 0.15s;
-        }
-        .header-cta:hover { background: var(--accent-strong); color: var(--canvas); }
-
-        main {
-            position: relative;
-            z-index: 1;
-            flex: 1;
-            display: flex;
-            align-items: center;
-            padding: 3rem 2rem;
-        }
-        .container {
-            max-width: 56rem;
-            margin: 0 auto;
-            width: 100%;
-        }
-
-        .eyebrow {
-            font-family: 'JetBrains Mono', monospace;
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 0.25em;
-            color: var(--accent);
-            margin-bottom: 2rem;
-        }
-        h1 {
-            font-family: 'Instrument Sans', sans-serif;
-            font-size: clamp(2.5rem, 5vw + 1rem, 5rem);
-            font-weight: 600;
-            line-height: 1.05;
-            letter-spacing: -0.02em;
-            margin: 0 0 1.5rem 0;
-            color: var(--ink);
-        }
-        .lede {
-            font-size: clamp(1.125rem, 1.5vw + 0.5rem, 1.5rem);
-            line-height: 1.5;
-            color: rgba(31, 36, 33, 0.75);
-            max-width: 40rem;
-            margin: 0 0 3rem 0;
-        }
-        .lede strong { color: var(--ink); font-weight: 600; }
-
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
-            margin-bottom: 3rem;
-        }
-        @media (max-width: 800px) {
-            .grid { grid-template-columns: 1fr; gap: 1.5rem; }
-        }
-        .grid-item {
-            border-top: 1px solid rgba(71, 107, 87, 0.5);
-            padding-top: 1.25rem;
-        }
-        .grid-item h3 {
-            font-family: 'Instrument Sans', sans-serif;
-            font-size: 1.125rem;
-            font-weight: 600;
-            color: var(--ink);
-            margin: 0 0 0.75rem 0;
-        }
-        .grid-item p {
-            font-size: 0.95rem;
-            line-height: 1.6;
-            color: rgba(31, 36, 33, 0.65);
-            margin: 0;
-        }
-        .cta {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.875rem 1.5rem;
-            background: var(--accent);
-            color: var(--canvas);
-            font-weight: 500;
-            font-size: 0.95rem;
-            border-radius: 2px;
-            transition: background 0.15s;
-        }
-        .cta:hover {
-            background: var(--accent-strong);
-            color: var(--canvas);
-        }
-        .cta-secondary {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.875rem 1.5rem;
-            border: 1px solid rgba(31, 36, 33, 0.25);
-            color: var(--ink);
-            font-weight: 500;
-            font-size: 0.95rem;
-            border-radius: 2px;
-            transition: border-color 0.15s, color 0.15s;
-        }
-        .cta-row {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.75rem;
-        }
-        .cta-secondary:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-        }
-
-        footer {
-            position: relative;
-            z-index: 2;
-            padding: 2rem;
-            border-top: 1px solid var(--border);
-            font-size: 0.8rem;
-            color: var(--ink-muted);
-            text-align: center;
-        }
-        footer a { color: var(--ink-muted); }
-        footer a:hover { color: var(--accent); }
-    </style>
-    <link rel="stylesheet" href="aegis-site.css" />
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#FFFFFF">
+<title>Lunas · Prove the code works. Then show it.</title>
+<meta name="description" content="Lunas boots your project in a fresh sandbox, runs deterministic checks and returns a pass or a fail with the evidence. The verdict becomes a badge that tells the truth on its own.">
+<meta name="author" content="Novesteria">
+<link rel="canonical" href="https://lunas.novesteria.com/">
+<meta property="og:type" content="website"><meta property="og:site_name" content="Lunas"><meta property="og:title" content="Lunas · Prove the code works. Then show it."><meta property="og:description" content="Verification for generated code. Open-source core, sandboxed Full engine, a badge that goes grey on its own."><meta property="og:url" content="https://lunas.novesteria.com/"><meta property="og:image" content="https://lunas.novesteria.com/og-image.png">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"><link rel="icon" type="image/png" sizes="16x16" href="/favicon-16.png"><link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<link rel="stylesheet" href="/lunas-site.css">
 </head>
 <body>
-    <header class="site-header">
-        <div class="nav-shell">
-            <div class="header-brand-group">
-                <a href="/" class="brand" aria-label="Aegis home">
-                    <span class="brand-mark">
-                        <svg viewBox="0 0 100 100" aria-hidden="true">
-                            <path d="M50 8 L84 23 L84 53 C84 76 68 90 50 96 C32 90 16 76 16 53 L16 23 Z"
-                                  stroke="currentColor" stroke-width="7" stroke-linejoin="round" fill="none"/>
-                        </svg>
-                    </span>
-                    <span>aegis</span>
-                </a>
-                <a href="https://novesteria.com" class="header-link">by Novesteria ↗</a>
-            </div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<symbol id="moon" viewBox="0 0 100 100"><g transform="translate(50 50) rotate(200) translate(-50 -50)"><path d="M68.99 12.54 A42 42 0 1 0 68.99 87.46 A50 50 0 0 1 68.99 12.54 Z" fill="currentColor"/></g></symbol>
+<symbol id="tick" viewBox="0 0 16 16"><path d="M3 8.5l3 3 7-7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+<symbol id="cross" viewBox="0 0 16 16"><path d="M4.5 4.5l7 7M11.5 4.5l-7 7" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+</defs></svg>
 
-            <div class="header-actions">
-                <nav class="site-nav" aria-label="Primary navigation">
-                    <a href="#editions">Core &amp; Full</a>
-                    <a href="#method">Method</a>
-                    <a href="#coverage">Coverage</a>
-                </nav>
-                <a href="/scan?engine=core" class="button header-cta">Run Core free</a>
-            </div>
-        </div>
-    </header>
+<header class="site"><div class="wrap nav">
+  <a class="brand" href="/"><svg width="26" height="26" style="color:#2A3B31"><use href="#moon"/></svg><span><b>Lunas</b><span class="by">BY NOVESTERIA</span></span></a>
+  <button class="nav-toggle" aria-label="Menu" aria-expanded="false"><svg width="18" height="18" viewBox="0 0 18 18"><path d="M2 4.5h14M2 9h14M2 13.5h14" stroke="#20261F" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+  <nav class="nav-links"><a href="/how">How it works</a><a href="/docs">Docs</a><a href="/verified">Verification pages</a><a class="btn primary sm" href="/app/login?next=/app/new">Run a scan</a></nav>
+</div></header>
 
-    <main class="home-main">
-        <section class="home-hero">
-            <div class="hero-copy">
-                <p class="eyebrow">Open and managed verification</p>
-                <h1>A deterministic validator for AI-generated code.</h1>
-                <p class="lede">
-                    <strong>Start free with 21 open-source layers. Go deeper with 75.</strong>
-                    Aegis examines generated code layer by layer, then returns a verdict
-                    backed by evidence — directly in your browser.
-                </p>
-                <div class="hero-actions">
-                    <a href="/scan?engine=core" class="button button-primary">
-                        Run 21 layers free <span class="arrow" aria-hidden="true">→</span>
-                    </a>
-                    <a href="/scan?engine=full" class="button button-secondary">Explore Aegis Full</a>
-                </div>
-                <div class="trust-row" aria-label="Product attributes">
-                    <span>Core · free &amp; open source</span>
-                    <span>Full · proprietary &amp; paid</span>
-                    <span>Isolated hosted scans</span>
-                </div>
-            </div>
+<main>
+<section class="wrap hero">
+  <div>
+    <div class="kicker rule">Verification for generated code</div>
+    <h1>Prove the code works. Then show it.</h1>
+    <p class="lede">Lunas boots your project in a fresh sandbox, runs it through deterministic checks and returns a pass or a fail with the evidence. The verdict becomes a badge that tells the truth on its own.</p>
+    <div class="actions"><a class="btn primary" href="/app/login?next=/app/new">Run a scan free</a><a class="btn outline" href="/verified">See a verification page <span class="arrow">→</span></a></div>
+    <div class="facts">
+      <span><svg class="check" style="color:#2E5C43"><use href="#tick"/></svg>Open-source core, Apache 2.0</span>
+      <span><svg class="check" style="color:#2E5C43"><use href="#tick"/></svg>Code deleted after every scan</span>
+      <span><svg class="check" style="color:#2E5C43"><use href="#tick"/></svg>No password to remember</span>
+    </div>
+  </div>
+  <div class="stack" aria-label="Example report">
+    <div class="ghost"></div>
+    <span class="badge lg badge-float"><span class="a"><svg width="14" height="14"><use href="#moon"/></svg>Lunas</span><span class="b">Verified <em>· Full</em></span></span>
+    <div class="report">
+      <div class="hd"><div><b>novesteria / task-tracker</b><small>scan #128 · full · a3f9c1 on main</small></div><span class="pill ok">Pass · 75 of 75</span></div>
+      <div class="row"><span class="l"><span class="dot ok"><svg width="11" height="11" style="color:#2E5C43"><use href="#tick"/></svg></span>Structure &amp; imports</span><span class="n">18 · 0.9s</span></div>
+      <div class="row"><span class="l"><span class="dot ok"><svg width="11" height="11" style="color:#2E5C43"><use href="#tick"/></svg></span>Install &amp; compile</span><span class="n">9 · 92s</span></div>
+      <div class="row"><span class="l"><span class="dot ok"><svg width="11" height="11" style="color:#2E5C43"><use href="#tick"/></svg></span>Contract &amp; schema audit</span><span class="n">31 · 44s</span></div>
+      <div class="row"><span class="l"><span class="dot ok"><svg width="11" height="11" style="color:#2E5C43"><use href="#tick"/></svg></span>Runtime behavior</span><span class="n">17 · 95s</span></div>
+      <div class="ft"><span>Booted cold in an isolated sandbox · 4m 12s</span><span class="link">lunas.novesteria.com/v/task-tracker ↗</span></div>
+    </div>
+    <div class="ghcheck"><span><b>Lunas / full</b> <span class="muted">Verified · 75 of 75 · posted on the commit</span></span><span class="muted">Details</span></div>
+  </div>
+</section>
 
-            <div class="proof-stage" aria-label="Example Aegis validation report">
-                <div class="report-window">
-                    <div class="window-bar">
-                        <span class="window-dots" aria-hidden="true"><i></i><i></i><i></i></span>
-                        <span>core_validation_report.json</span>
-                        <span>00:18.4</span>
-                    </div>
-                    <div class="report-body">
-                        <div class="report-verdict">
-                            <div>
-                                <div class="verdict-kicker">Verification complete</div>
-                                <h2>PASSED</h2>
-                            </div>
-                            <div class="verdict-score">21</div>
-                        </div>
-                        <div class="check-list">
-                            <div class="check-row">
-                                <span class="check-mark">✓</span>
-                                <span class="check-name">Cross-file consistency</span>
-                                <span class="check-kind">deterministic</span>
-                            </div>
-                            <div class="check-row">
-                                <span class="check-mark">✓</span>
-                                <span class="check-name">Dependency resolution</span>
-                                <span class="check-kind">deterministic</span>
-                            </div>
-                            <div class="check-row">
-                                <span class="check-mark">✓</span>
-                                <span class="check-name">Type check &amp; test runners</span>
-                                <span class="check-kind">runtime</span>
-                            </div>
-                            <div class="check-row">
-                                <span class="check-mark">✓</span>
-                                <span class="check-name">Design brief fidelity</span>
-                                <span class="check-kind">hybrid</span>
-                            </div>
-                        </div>
-                        <div class="report-command"><b>WEB</b> Aegis Core · 21-layer scan</div>
-                    </div>
-                </div>
-            </div>
-        </section>
+<section class="wrap stats">
+  <div><b>21</b><span>checks in the open-source core</span></div>
+  <div><b>75</b><span>checks in Full, in a fresh sandbox</span></div>
+  <div><b>~4 min</b><span>from commit to verdict</span></div>
+  <div><b>0</b><span>lines of your code kept afterwards</span></div>
+</section>
 
-        <section class="edition-section" id="editions">
-            <div class="edition-heading">
-                <p class="section-label">Choose the engine</p>
-                <h2>One product. Two clearly different depths.</h2>
-                <p>Core is the free, open-source baseline. Full is the proprietary managed engine for teams that need broader verification.</p>
-            </div>
-            <div class="edition-grid">
-                <article class="edition-card edition-core">
-                    <div class="edition-card-top">
-                        <span class="edition-name">Aegis Core</span>
-                        <span class="edition-badge badge-free">Free</span>
-                    </div>
-                    <div class="edition-count"><strong>21</strong><span>verification layers</span></div>
-                    <p>Open-source validation for structure, dependencies, cross-file consistency, builds, tests and requested features.</p>
-                    <ul class="edition-facts">
-                        <li>Free hosted scans</li>
-                        <li>Open-source · Apache 2.0</li>
-                        <li>Detailed layer evidence</li>
-                    </ul>
-                    <a href="/scan?engine=core" class="button button-primary">Use Core on this site <span class="arrow" aria-hidden="true">→</span></a>
-                </article>
+<section class="wrap section" id="how">
+  <div class="section-head"><div><div class="kicker">How it works</div><h2>Four steps. No opinions.</h2></div><a class="more" href="/how">The whole story →</a></div>
+  <div class="steps">
+    <div class="step"><div class="ic"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#475B4D" stroke-width="1.5"><path d="M2 5.5a1.5 1.5 0 0 1 1.5-1.5H7l1.5 2h6A1.5 1.5 0 0 1 16 7.5v6A1.5 1.5 0 0 1 14.5 15h-11A1.5 1.5 0 0 1 2 13.5z"/></svg></div><span class="kicker">01 · Point</span><b>A repository or a zip</b><p>Pick a commit, or drop a file. Read into a sandbox, never into storage.</p></div>
+    <div class="step"><div class="ic"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#475B4D" stroke-width="1.5"><path d="M5 3.5v11l9-5.5z" stroke-linejoin="round"/></svg></div><span class="kicker">02 · Boot</span><b>Started cold, for real</b><p>Dependencies installed, project compiled, server up. If it does not boot, the report says where it stopped.</p></div>
+    <div class="step"><div class="ic"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#475B4D" stroke-width="1.5" stroke-linecap="round"><path d="M3 5h3M3 9h3M3 13h3M8.5 5h6.5M8.5 9h6.5M8.5 13h6.5"/></svg></div><span class="kicker">03 · Prove</span><b>75 checks, deterministic</b><p>Structure, install, contract, behavior. Same input, same verdict. Every failure named with its evidence.</p></div>
+    <div class="step"><div class="ic"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="#475B4D" stroke-width="1.5"><rect x="2" y="4" width="14" height="10" rx="2"/><path d="M6.5 9l2 2 3.5-4" stroke-linecap="round" stroke-linejoin="round"/></svg></div><span class="kicker">04 · Show</span><b>A badge and a public page</b><p>Tied to the commit. Goes grey on its own when unscanned commits land. One check posted to GitHub.</p></div>
+  </div>
+</section>
 
-                <article class="edition-card edition-full">
-                    <div class="edition-card-top">
-                        <span class="edition-name">Aegis Full</span>
-                        <span class="edition-badge badge-paid">Paid access</span>
-                    </div>
-                    <div class="edition-count"><strong>75</strong><span>verification layers</span></div>
-                    <p>Closed-source managed verification with substantially deeper checks across runtime, contracts, schemas and infrastructure.</p>
-                    <ul class="edition-facts">
-                        <li>Commercial hosted engine</li>
-                        <li>Proprietary verification layers</li>
-                        <li>Access controlled by account</li>
-                    </ul>
-                    <a href="/scan?engine=full" class="button button-inverse">View Full access <span class="arrow" aria-hidden="true">→</span></a>
-                </article>
-            </div>
-        </section>
+<section class="wrap"><div class="band">
+  <div class="kicker">What comes back</div><h2>Three things you can hand to someone else.</h2>
+  <div class="three">
+    <div class="card"><div class="vis"><div class="mini" style="font-weight:500;color:#20261F"><span>VALIDATION_REPORT.md</span><span class="ok">PASS</span></div><div class="mini"><span>Structure &amp; imports</span><span>18 / 18</span></div><div class="mini"><span>Install &amp; compile</span><span>9 / 9</span></div><div class="mini"><span>Contract &amp; schema</span><span>31 / 31</span></div><div class="mini"><span>Runtime behavior</span><span>17 / 17</span></div></div><b>The report</b><p>Four groups, plain words, evidence for every failure. Kept until you delete it; downloadable as Markdown or JSON.</p></div>
+    <div class="card"><div class="vis" style="align-items:flex-start;gap:12px"><span class="badge"><span class="a"><svg width="12" height="12"><use href="#moon"/></svg>Lunas</span><span class="b">Verified <em>· Full</em></span></span><span class="badge core"><span class="a"><svg width="12" height="12"><use href="#moon"/></svg>Lunas</span><span class="b">Verified <em>· Core</em></span></span><span class="badge stale"><span class="a"><svg width="12" height="12"><use href="#moon"/></svg>Lunas</span><span class="b">Verified <em>· 3 commits ago</em></span></span></div><b>The badge</b><p>Green only for a pass. Says the depth. Greys out by itself when commits land unscanned, so it can never quietly lie.</p></div>
+    <div class="card"><div class="vis"><span class="mono" style="font-size:11px;color:#8A928A">lunas.novesteria.com/v/task-tracker</span><span style="font-size:15px;font-weight:600">Verified · Full · 75 of 75</span><span style="font-size:12.5px;color:#5A6359">commit a3f9c1 · 12 Sep 2026 · 4 groups, all pass</span></div><b>The public page</b><p>The badge links to it. Verdict, commit, time and history. Never the code, never the individual checks.</p></div>
+  </div>
+</div></section>
 
-        <section class="signal-strip" aria-label="Aegis capabilities">
-            <div class="signal-shell">
-                <div class="signal">
-                    <span class="signal-icon">01</span>
-                    <span><strong>Real execution</strong><span>Installs, builds, types and tests the project.</span></span>
-                </div>
-                <div class="signal">
-                    <span class="signal-icon">02</span>
-                    <span><strong>Cross-file reasoning</strong><span>Finds drift that isolated linters cannot see.</span></span>
-                </div>
-                <div class="signal">
-                    <span class="signal-icon">03</span>
-                    <span><strong>Evidence in the output</strong><span>Every failure returns a concrete reason.</span></span>
-                </div>
-            </div>
-        </section>
+<section class="wrap split">
+  <div>
+    <div class="kicker">Honest by design</div>
+    <h2 style="font-size:34px;font-weight:600;letter-spacing:-.025em;line-height:1.12;margin-top:12px">74 of 75 is a fail. With a name.</h2>
+    <p class="lede">A verdict you cannot argue with has to be one you can inspect. Every failure is written in plain words with what the sandbox actually saw, and nothing is rounded up to "mostly".</p>
+    <div class="list">
+      <span><svg class="check" style="color:#2E5C43"><use href="#tick"/></svg>Deterministic first. Same input, same verdict, every time.</span>
+      <span><svg class="check" style="color:#2E5C43"><use href="#tick"/></svg>The core is open source, so anyone can read what a pass means.</span>
+      <span><svg class="check" style="color:#2E5C43"><use href="#tick"/></svg>The layers are never listed, so there is no menu to game.</span>
+    </div>
+  </div>
+  <div class="report" aria-label="Example failing report">
+    <div class="hd"><div><b>acme / invoice-portal</b><small>scan #126 · full · 9a11cd</small></div><span class="pill bad">Fail · 74 of 75</span></div>
+    <div class="row"><span class="l"><span class="dot ok"><svg width="11" height="11" style="color:#2E5C43"><use href="#tick"/></svg></span>Structure &amp; imports</span><span class="n" style="color:#2E5C43">PASS</span></div>
+    <div class="row"><span class="l"><span class="dot ok"><svg width="11" height="11" style="color:#2E5C43"><use href="#tick"/></svg></span>Install &amp; compile</span><span class="n" style="color:#2E5C43">PASS</span></div>
+    <div class="row"><span class="l"><span class="dot bad"><svg width="11" height="11" style="color:#7A1F1E"><use href="#cross"/></svg></span>Contract &amp; schema audit</span><span class="n" style="color:#7A1F1E">1 FAIL</span></div>
+    <div class="row"><span class="l"><span class="dot ok"><svg width="11" height="11" style="color:#2E5C43"><use href="#tick"/></svg></span>Runtime behavior</span><span class="n" style="color:#2E5C43">PASS</span></div>
+    <div class="evidence"><b>Schema drift</b>The invoices table stores <code style="display:inline;margin:0;font-size:12px;color:#20261F">due_at</code> as a date; the API and the form send a full timestamp. Payments made on the due day are marked late.<code>POST /invoices { due_at: "2026-09-12T14:00Z" } → stored 2026-09-12 · compared as 00:00</code></div>
+  </div>
+</section>
 
-        <section class="content-section" id="method">
-            <div class="section-heading">
-                <p class="section-label">The method</p>
-                <h2>Generated is not the same as verified.</h2>
-                <p>Aegis treats a codebase as a connected system. Cheap structural checks run first; builds, tests and semantic checks follow only where they apply.</p>
-            </div>
-            <div class="method-grid">
-                <article class="method-card">
-                    <div class="method-number">01 / Detect</div>
-                    <h3>Read the project</h3>
-                    <p>Aegis detects Python, Node.js, TypeScript, JavaScript and static HTML surfaces before selecting applicable checks.</p>
-                </article>
-                <article class="method-card">
-                    <div class="method-number">02 / Verify</div>
-                    <h3>Run the layers</h3>
-                    <p>Syntax, imports, dependencies, cross-file contracts, builds and tests are evaluated in a repeatable order.</p>
-                </article>
-                <article class="method-card">
-                    <div class="method-number">03 / Report</div>
-                    <h3>Return the evidence</h3>
-                    <p>You receive a clear pass or fail, stack detection, timings and the exact layer evidence behind the verdict.</p>
-                </article>
-            </div>
-        </section>
+<section class="wrap"><div class="duo">
+  <div><div class="t"><b>Core</b><span class="kicker">Free · open source</span></div><p>21 deterministic checks: structure, imports, install, compile. Run it here, three times a month, or from the command line as often as you like.</p><span class="cmd"><span style="color:#8A928A">$</span>pip install lunas-validator</span></div>
+  <div><div class="t"><b>Full</b><span class="kicker">75 checks · with a plan</span></div><p>Everything in Core, then the project is booted in a sandbox, its contract audited and its behavior probed. Badge, public page and GitHub check included.</p><a class="btn primary" style="width:fit-content" href="/app/login?next=/app/new">Run a Full scan</a></div>
+</div></section>
 
-        <section class="coverage-band" id="coverage">
-            <div class="coverage-shell">
-                <div class="coverage-copy">
-                    <p class="section-label">Coverage</p>
-                    <h2>One verdict. Several kinds of proof.</h2>
-                    <p>Most checks are deterministic. Model judgment is reserved for design and feature questions where static analysis alone cannot answer honestly.</p>
-                </div>
-                <div class="coverage-matrix" aria-label="Validation coverage categories">
-                    <div class="coverage-item"><span>STRUCTURE</span><strong>Syntax &amp; completeness</strong></div>
-                    <div class="coverage-item"><span>LINKAGE</span><strong>Imports &amp; cross-file consistency</strong></div>
-                    <div class="coverage-item"><span>TOOLCHAIN</span><strong>Dependencies &amp; package install</strong></div>
-                    <div class="coverage-item"><span>EXECUTION</span><strong>Type checks, builds &amp; tests</strong></div>
-                    <div class="coverage-item"><span>DESIGN</span><strong>Brief fidelity with evidence override</strong></div>
-                    <div class="coverage-item"><span>FEATURES</span><strong>Requested capability coverage</strong></div>
-                </div>
-            </div>
-        </section>
+<section class="wrap" style="padding-bottom:80px">
+  <div class="section-head"><h2 style="font-size:26px;font-weight:600;letter-spacing:-.02em;margin:0">Recently verified</h2><a class="more" href="/verified">All verification pages →</a></div>
+  <div class="recent" data-verified="3" data-kind="recent">
+    <a href="/v/task-tracker"><span class="badge"><span class="a"><svg width="12" height="12"><use href="#moon"/></svg>Lunas</span><span class="b">Verified <em>· Full</em></span></span><b>novesteria / task-tracker</b><span>75 of 75 · a3f9c1 · 2 hours ago</span></a>
+    <a href="/v/crew-scheduler"><span class="badge"><span class="a"><svg width="12" height="12"><use href="#moon"/></svg>Lunas</span><span class="b">Verified <em>· Full</em></span></span><b>crew-scheduler</b><span>75 of 75 · c81b44 · built by Ursa</span></a>
+    <a href="/v/landing-refresh"><span class="badge core"><span class="a"><svg width="12" height="12"><use href="#moon"/></svg>Lunas</span><span class="b">Verified <em>· Core</em></span></span><b>landing-refresh</b><span>21 of 21 · upload · 5 Sep</span></a>
+  </div>
+</section>
 
-        <section class="final-cta">
-            <div>
-                <p class="section-label">Start with Core</p>
-                <h2>Upload the code. Run 21 layers free.</h2>
-            </div>
-            <div class="final-actions">
-                <a href="/scan?engine=core" class="button button-primary">Run Core free <span class="arrow" aria-hidden="true">→</span></a>
-                <a href="/scan?engine=full" class="button button-secondary">Aegis Full</a>
-            </div>
-        </section>
-    </main>
+<section class="wrap"><div class="cta">
+  <div><h2>Your next commit, with a verdict next to it.</h2><p>Sign in with Google, point Lunas at a repository, and read the report in about four minutes. The code is gone when the scan ends. The proof stays.</p></div>
+  <div class="r"><a class="btn primary" href="/app/login?next=/app/new">Run a scan free</a><small>Three Core scans a month, no card needed</small></div>
+</div></section>
+</main>
 
-    <footer class="site-footer">
-        <div class="footer-shell">
-            <span>Aegis · deterministic validation for AI-generated code</span>
-            <span>Built by <a href="https://novesteria.com">Novesteria</a></span>
-        </div>
-    </footer>
+<footer class="site"><div class="wrap"><span>© 2026 Novesteria</span><nav><a href="/docs">Docs</a><a href="/verified">Verification pages</a><a href="/legal/security">Security</a><a href="/legal/privacy">Privacy</a><a href="/legal/terms">Terms</a><a href="/legal/refund">Refund policy</a></nav></div></footer>
+<script src="/lunas-site.js" defer></script>
 </body>
 </html>
