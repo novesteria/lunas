@@ -6,17 +6,7 @@
     "directory": "./",
     "binding": "ASSETS",
     "not_found_handling": "404-page",
-    "run_worker_first": [
-      "/app",
-      "/app/*",
-      "/api/*",
-      "/v/*",
-      "/b/*",
-      "/u/*",
-      "/join/*",
-      "/static/*",
-      "/health"
-    ]
+    "run_worker_first": true
   },
   "vars": {
     "APP_ORIGIN": "https://aegis-full-api-production.up.railway.app"
