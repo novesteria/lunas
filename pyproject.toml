@@ -49,10 +49,10 @@ aegis = "aegis_cli.__main__:main"
 
 [project.urls]
 homepage = "https://aegis.novesteria.com"
-repository = "https://github.com/novesteria/aegis"
-documentation = "https://github.com/novesteria/aegis/tree/main/docs"
-issues = "https://github.com/novesteria/aegis/issues"
-changelog = "https://github.com/novesteria/aegis/blob/main/CHANGELOG.md"
+repository = "https://github.com/novesteria/lunas"
+documentation = "https://github.com/novesteria/lunas/tree/main/docs"
+issues = "https://github.com/novesteria/lunas/issues"
+changelog = "https://github.com/novesteria/lunas/blob/main/CHANGELOG.md"
 
 [tool.hatch.version]
 path = "aegis/__init__.py"

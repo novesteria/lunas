@@ -1,6 +1,6 @@
 # Aegis
 
-[![tests](https://github.com/novesteria/aegis/actions/workflows/test.yml/badge.svg)](https://github.com/novesteria/aegis/actions/workflows/test.yml)
+[![tests](https://github.com/novesteria/lunas/actions/workflows/test.yml/badge.svg)](https://github.com/novesteria/lunas/actions/workflows/test.yml)
 [![PyPI](https://img.shields.io/pypi/v/aegis-validator)](https://pypi.org/project/aegis-validator/)
 [![Python](https://img.shields.io/pypi/pyversions/aegis-validator)](https://pypi.org/project/aegis-validator/)
 [![License](https://img.shields.io/badge/license-Apache--2.0-blue)](./LICENSE)
@@ -32,7 +32,7 @@ pip install "aegis-validator[anthropic]"
 Or from source:
 
 ```
-git clone https://github.com/novesteria/aegis.git
+git clone https://github.com/novesteria/lunas.git
 cd aegis
 pip install -e .
 ```
