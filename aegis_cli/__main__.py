@@ -31,7 +31,7 @@ def _build_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="aegis",
         description="Aegis — a deterministic validator for AI-generated code.",
-        epilog="Documentation: https://github.com/novesteria/aegis",
+        epilog="Documentation: https://github.com/novesteria/lunas",
     )
     parser.add_argument(
         "--version",

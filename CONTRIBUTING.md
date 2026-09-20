@@ -71,5 +71,5 @@ By contributing, you agree your contributions are licensed under
 
 ## Questions
 
-Open a [discussion](https://github.com/novesteria/aegis/discussions)
+Open a [discussion](https://github.com/novesteria/lunas/discussions)
 or email [hello@novesteria.com](mailto:hello@novesteria.com).
