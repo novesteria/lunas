@@ -48,7 +48,7 @@ dev = [
 aegis = "aegis_cli.__main__:main"
 
 [project.urls]
-homepage = "https://aegis.novesteria.com"
+homepage = "https://lunas.novesteria.com"
 repository = "https://github.com/novesteria/lunas"
 documentation = "https://github.com/novesteria/lunas/tree/main/docs"
 issues = "https://github.com/novesteria/lunas/issues"

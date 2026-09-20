@@ -23,6 +23,10 @@
   },
   "routes": [
     {
+      "pattern": "lunas.novesteria.com",
+      "custom_domain": true
+    },
+    {
       "pattern": "aegis.novesteria.com",
       "custom_domain": true
     }
